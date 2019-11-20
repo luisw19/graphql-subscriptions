@@ -2,7 +2,11 @@
 
 This project contains a sample Graphql Subscription based on [this article](https://medium.com/swlh/create-a-graphql-server-with-queries-mutations-subscriptions-b53df26df985) by Tom Nagle.
 
-## Try a subscription
+## Pre-requisites
+
+This project requires [npm](https://www.npmjs.com/get-npm), [TypeScript](https://www.npmjs.com/package/typescript) and [mongo](https://www.mongodb.com/what-is-mongodb) to be installed.
+
+## Try it out
 
 - run:
 
@@ -26,7 +30,7 @@ This project contains a sample Graphql Subscription based on [this article](http
     }
     ```
 
-- In another tab enter the following **mutation** and **query variables** and hit enter:
+- In another enter the following **mutation** and **query variables** values and hit enter to create a new _card_:
 
     ```graphql
     mutation ($CreateCardInput: CreateCardInput!){
@@ -48,4 +52,17 @@ This project contains a sample Graphql Subscription based on [this article](http
     }
     ```
 
-- Finally Notice how the subscription tab got updated with the added record.
+    Notice how the subscription tab got updated with the added record.
+
+- Finally if you want to **query** previously created _cards_ enter the following and hit enter:
+
+    ```graphql
+    query {
+        cards {
+            _id
+            title
+            author
+            body
+        }
+    }
+    ```
