@@ -1,0 +1,31 @@
+{
+  "name": "typescript-starter",
+  "version": "1.0.0",
+  "main": "src/app.ts",
+  "author": "Tom Nagle",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js,.ts ./server",
+    "lint:fix": "eslint --ext .js,.ts ./server --fix",
+    "build": "tsc",
+    "dev": "nodemon"
+  },
+  "devDependencies": {
+    "@types/mongoose": "^5.5.32",
+    "@types/node": "^12.12.9",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "prettier": "1.17.0",
+    "pretty-quick": "^1.10.0",
+    "ts-node": "^8.1.0",
+    "typescript": "^3.4.5"
+  },
+  "dependencies": {
+    "apollo-server": "^2.9.9",
+    "graphql": "^14.5.8",
+    "mongoose": "^5.7.11",
+    "ts-mongoose": "^0.0.21"
+  }
+}
