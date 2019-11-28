@@ -7,8 +7,13 @@ This project contains a sample Graphql microservice based on [this article](http
 This project requires [npm](https://www.npmjs.com/get-npm) and [mongo](https://www.mongodb.com/what-is-mongodb) to be installed. Following an example on how to install in Mac:
 
 ```bash
+# to install node
 brew install node
-brew install mongodb
+
+# to install and start mongodb community edition
+brew tap mongodb/brew
+brew install mongodb-community
+brew services start mongodb-community
 ```
 
 ## Try it out
