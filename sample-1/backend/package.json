@@ -2,7 +2,7 @@
   "name": "typescript-starter",
   "version": "1.0.0",
   "main": "src/app.ts",
-  "author": "Tom Nagle",
+  "author": "Luis Weir",
   "license": "MIT",
   "private": true,
   "scripts": {
