@@ -1,10 +1,15 @@
-# Graphql Subscription
+# Graphql Backend Microservice
 
-This project contains a sample Graphql Subscription based on [this article](https://medium.com/swlh/create-a-graphql-server-with-queries-mutations-subscriptions-b53df26df985) by Tom Nagle.
+This project contains a sample Graphql microservice based on [this article](https://medium.com/swlh/create-a-graphql-server-with-queries-mutations-subscriptions-b53df26df985) by Tom Nagle.
 
 ## Pre-requisites
 
-This project requires [npm](https://www.npmjs.com/get-npm), [TypeScript](https://www.npmjs.com/package/typescript) and [mongo](https://www.mongodb.com/what-is-mongodb) to be installed.
+This project requires [npm](https://www.npmjs.com/get-npm) and [mongo](https://www.mongodb.com/what-is-mongodb) to be installed. Following an example on how to install in Mac:
+
+```bash
+brew install node
+brew install mongodb
+```
 
 ## Try it out
 
