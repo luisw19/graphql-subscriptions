@@ -31,7 +31,7 @@ brew services start mongodb-community
 
     ```graphql
     subscription {
-        CardCreated {
+        PostCreated {
             _id
             title
             author
@@ -40,11 +40,11 @@ brew services start mongodb-community
     }
     ```
 
-- In another enter the following **mutation** and **query variables** values and hit enter to create a new _card_:
+- In another enter the following **mutation** and **query variables** values and hit enter to create a new _post_:
 
     ```graphql
-    mutation ($CreateCardInput: CreateCardInput!){
-        CreateCard (input: $CreateCardInput) {
+    mutation ($CreatePostInput: CreatePostInput!){
+        CreatePost (input: $CreatePostInput) {
             title
             author
             body
@@ -54,7 +54,7 @@ brew services start mongodb-community
 
     ```json
     {
-        "CreateCardInput": {
+        "CreatePostInput": {
             "title": "Title",
             "author": "Author",
             "body": "body"
@@ -64,11 +64,11 @@ brew services start mongodb-community
 
     Notice how the subscription tab got updated with the added record.
 
-- Finally if you want to **query** previously created _cards_ enter the following and hit enter:
+- Finally if you want to **query** previously created _posts_ enter the following and hit enter:
 
     ```graphql
     query {
-        cards {
+        posts {
             _id
             title
             author

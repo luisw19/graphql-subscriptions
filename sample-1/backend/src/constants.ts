@@ -1,1 +1,1 @@
-export const CARD_CREATED = 'CARD_CREATED'
+export const POST_CREATED = 'POST_CREATED'

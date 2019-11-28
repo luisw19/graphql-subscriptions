@@ -1,6 +1,6 @@
 import mongoose, { Document } from 'mongoose'
 
-export interface Card extends Document {
+export interface Post extends Document {
     title: string
     author: string
     body: string
@@ -16,4 +16,4 @@ const Schema = new mongoose.Schema(
     { timestamps: true }
 )
 
-export default mongoose.model<Card>('Card', Schema)
+export default mongoose.model<Post>('Post', Schema)

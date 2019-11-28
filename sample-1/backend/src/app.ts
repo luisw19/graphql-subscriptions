@@ -10,7 +10,7 @@ export const pubsub = new PubSub()
 const server = new ApolloServer({ typeDefs, resolvers })
 
 // Move this into a configuration file
-const DATABASE_NAME = 'test-database'
+const DATABASE_NAME = 'post-db'
 
 // The `listen` method launches a web server.
 server.listen().then(async ({ url }: { url: string }) => {

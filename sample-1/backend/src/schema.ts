@@ -1,28 +1,27 @@
-
 // src/schema.ts
 import { gql } from 'apollo-server'
 
 const typeDefs = gql`
     # New subscriptions type
     type Subscription {
-        CardCreated: Card
+        PostCreated: Post
     }
-    type Card {
+    type Post {
         _id: ID!
         title: String
         author: String
         body: String
     }
     type Query {
-        cards: [Card]
+        posts: [Post]
     }
-    input CreateCardInput {
+    input CreatePostInput {
         title: String
         author: String
         body: String
     }
     type Mutation {
-        CreateCard(input: CreateCardInput): Card
+        CreatePost(input: CreatePostInput): Post
     }
 `
 

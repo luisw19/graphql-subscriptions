@@ -1,26 +1,26 @@
 import {
-    getAllCards,
-    GetAllCardsInput,
-    createCard,
-    CreateCardInput,
-} from './controllers/card.controller'
-import { CARD_CREATED } from './constants'
+    getAllPosts,
+    GetAllPostsInput,
+    createPost,
+    CreatePostInput,
+} from './controllers/post.controller'
+import { POST_CREATED } from './constants'
 import { pubsub } from './app'
 
 const resolvers = {
     Subscription: {
-        CardCreated: {
+        PostCreated: {
             // Additional event labels can be passed to asyncIterator creation
-            subscribe: () => pubsub.asyncIterator([CARD_CREATED]),
+            subscribe: () => pubsub.asyncIterator([POST_CREATED]),
         },
     },
     Query: {
-        cards: (_: null, { input }: { input: GetAllCardsInput }) =>
-            getAllCards({ ...input }),
+        posts: (_: null, { input }: { input: GetAllPostsInput }) =>
+            getAllPosts({ ...input }),
     },
     Mutation: {
-        CreateCard: (_: null, { input }: { input: CreateCardInput }) =>
-            createCard({ ...input }),
+        CreatePost: (_: null, { input }: { input: CreatePostInput }) =>
+            createPost({ ...input }),
     },
 }
 
