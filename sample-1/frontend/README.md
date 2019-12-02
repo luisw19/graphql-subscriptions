@@ -19,6 +19,6 @@ npm install -g @oracle/ojet-cl
 - run:
 
     ```bash
-    npm install
+    ojet restore
     ojet serve
     ```
