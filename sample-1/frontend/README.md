@@ -1,15 +1,24 @@
-# Graphql Frontend MicroUI
+# Graphql Frontend
 
-This project contains a sample Graphql MicroUI built using [Oracle JET](https://www.oracle.com/webfolder/technetwork/jet/index.html) by [Yuri Panshin](https://www.linkedin.com/in/ypanshin/).
+This project contains a sample Graphql UI based on Oracle JET basic template.
 
 ## Pre-requisites
 
-TBC
+This project requires [npm](https://www.npmjs.com/get-npm) and [Oracle JET](https://www.oracle.com/webfolder/technetwork/jet/index.html) to be installed. Following an example on how to install command line tool:
 
 ```bash
-TBC
+# to install node
+brew install node
+
+# to install Oracle JET
+npm install -g @oracle/ojet-cl
 ```
 
 ## Try it out
 
-- TBC
+- run:
+
+    ```bash
+    ojet restore
+    ojet serve
+    ```

@@ -1,0 +1,22 @@
+{
+  "name": "oj-posts-list",
+  "version": "1.0.0",
+  "jetVersion": "^8.0.0",
+  "displayName": "Posts Lists.",
+  "description": "The posts list component.",
+  "properties": {
+    "posts": {
+      "description": "Posts",
+      "type": "array"
+    }
+  },
+  "methods": {
+
+  }, 
+  "events": {
+
+  }, 
+  "slots": {
+
+  }
+}
