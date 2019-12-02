@@ -14,7 +14,7 @@ const DATABASE_NAME = 'post-db'
 
 // The `listen` method launches a web server.
 server.listen().then(async ({ url, subscriptionsUrl }: ServerInfo) => {
-    console.log(`🚀  GraphQL playground ready at ${url}/graphql`)
+    console.log(`🚀  GraphQL playground ready at ${url}graphql`)
     console.log(`🚀  Subscriptions ready at ${subscriptionsUrl}`)
     // Connect to your database
     await connect({ db: `mongodb://localhost:27017/${DATABASE_NAME}` })
