@@ -1,0 +1,664 @@
+{
+  "baseUrl": "js",
+  "use": "local",
+  "cdns": {
+    "jet": {
+      "prefix": "https://static.oracle.com/cdn/jet/v8.0.0/default/js",
+      "config": "bundles-config.js"
+    },
+    "3rdparty": "https://static.oracle.com/cdn/jet/v8.0.0/3rdparty"
+  },
+  "libs": {
+    "knockout": {
+      "cdn": "3rdparty",
+      "cwd": "node_modules/knockout/build/output",
+      "debug": {
+        "src": "knockout-latest.debug.js",
+        "path": "libs/knockout/knockout-#{version}.debug.js",
+        "cdnPath": "knockout/knockout-3.5.0.debug"
+      },
+      "release": {
+        "src": "knockout-latest.js",
+        "path": "libs/knockout/knockout-#{version}.js",
+        "cdnPath": "knockout/knockout-3.5.0"
+      }
+    },
+    "jquery": {
+      "cdn": "3rdparty",
+      "cwd": "node_modules/jquery/dist",
+      "debug": {
+        "src": "jquery.js",
+        "path": "libs/jquery/jquery-#{version}.js",
+        "cdnPath": "jquery/jquery-3.4.1"
+      },
+      "release": {
+        "src": "jquery.min.js",
+        "path": "libs/jquery/jquery-#{version}.min.js",
+        "cdnPath": "jquery/jquery-3.4.1.min"
+      }
+    },
+    "jqueryui-amd": {
+      "cdn": "3rdparty",
+      "cwd": "node_modules/jquery-ui/ui",
+      "debug": {
+        "src": [
+          "*.js",
+          "widgets/draggable.js",
+          "widgets/mouse.js",
+          "widgets/sortable.js"
+        ],
+        "path": "libs/jquery/jqueryui-amd-#{version}",
+        "cdnPath": "jquery/jqueryui-amd-1.12.1"
+      },
+      "release": {
+        "src": [
+          "*.js",
+          "widgets/draggable.js",
+          "widgets/mouse.js",
+          "widgets/sortable.js"
+        ],
+        "path": "libs/jquery/jqueryui-amd-#{version}.min",
+        "cdnPath": "jquery/jqueryui-amd-1.12.1.min"
+      }
+    },
+    "promise": {
+      "cdn": "3rdparty",
+      "cwd": "node_modules/es6-promise/dist",
+      "debug": {
+        "src": [
+          "es6-promise.js",
+          "es6-promise.map"
+        ],
+        "path": "libs/es6-promise/es6-promise.js",
+        "cdnPath": "es6-promise/es6-promise"
+      },
+      "release": {
+        "src": [
+          "es6-promise.min.js",
+          "es6-promise.min.map"
+        ],
+        "path": "libs/es6-promise/es6-promise.min.js",
+        "cdnPath": "es6-promise/es6-promise.min"
+      }
+    },
+    "hammerjs": {
+      "cdn": "3rdparty",
+      "cwd": "node_modules/hammerjs",
+      "debug": {
+        "src": "hammer.js",
+        "path": "libs/hammer/hammer-#{version}.js",
+        "cdnPath": "hammer/hammer-2.0.8"
+      },
+      "release": {
+        "src": "hammer.min.js",
+        "path": "libs/hammer/hammer-#{version}.min.js",
+        "cdnPath": "hammer/hammer-2.0.8.min"
+      }
+    },
+    "ojdnd": {
+      "cdn": "3rdparty",
+      "cwd": "node_modules/@oracle/oraclejet/dist/js/libs/dnd-polyfill",
+      "debug": {
+        "src": "dnd-polyfill-1.0.1.js",
+        "path": "libs/dnd-polyfill/dnd-polyfill-1.0.1.js",
+        "cdnPath": "dnd-polyfill/dnd-polyfill-1.0.1"
+      },
+      "release": {
+        "src": "dnd-polyfill-1.0.1.min.js",
+        "path": "libs/dnd-polyfill/dnd-polyfill-1.0.1.min.js",
+        "cdnPath": "dnd-polyfill/dnd-polyfill-1.0.1.min"
+      }
+    },
+    "ojs": {
+      "cdn": "jet",
+      "cwd": "node_modules/@oracle/oraclejet/dist/js/libs/oj",
+      "debug": {
+        "src": [
+          "debug*/**"
+        ],
+        "path": "libs/oj/v#{version}",
+        "pathSuffix": "/debug' + (_ojNeedsES5 ? '_es5' : '')",
+        "cdnPath": "debug"
+      },
+      "release": {
+        "src": [
+          "min*/**"
+        ],
+        "path": "libs/oj/v#{version}",
+        "pathSuffix": "/min'",
+        "cdnPath": "min"
+      },
+      "release_es5": {
+        "cwd": "min_es5",
+        "src": [
+          "**"
+        ],
+        "path": "libs/oj/v#{version}/min_es5",
+        "cdnPath": "min_es5"
+      }
+    },
+    "ojL10n": {
+      "cdn": "jet",
+      "cwd": "node_modules/@oracle/oraclejet/dist/js/libs/oj",
+      "debug": {
+        "src": "ojL10n.js",
+        "path": "libs/oj/v#{version}/ojL10n.js",
+        "cdnPath": "ojL10n"
+      },
+      "release": {
+        "src": "ojL10n.js",
+        "path": "libs/oj/v#{version}/ojL10n.js",
+        "cdnPath": "ojL10n"
+      }
+    },
+    "ojtranslations": {
+      "cdn": "jet",
+      "cwd": "node_modules/@oracle/oraclejet/dist/js/libs/oj/resources",
+      "debug": {
+        "src": [
+          "**"
+        ],
+        "path": "libs/oj/v#{version}/resources",
+        "cdnPath": "resources"
+      },
+      "release": {
+        "src": [
+          "**"
+        ],
+        "path": "libs/oj/v#{version}/resources",
+        "cdnPath": "resources"
+      }
+    },
+    "persist": {
+      "cdn": "3rdparty",
+      "cwd": "node_modules/@oracle/oraclejet/dist/js/libs/persist",
+      "debug": {
+        "cwd": "debug",
+        "src": [
+          "**"
+        ],
+        "path": "libs/persist/debug",
+        "cdnPath": "persist/debug"
+      },
+      "release": {
+        "cwd": "min",
+        "src": [
+          "**"
+        ],
+        "path": "libs/persist/min",
+        "cdnPath": "persist/min"
+      }
+    },
+    "text": {
+      "cdn": "3rdparty",
+      "cwd": "node_modules/requirejs-text",
+      "debug": {
+        "src": "text.js",
+        "path": "libs/require/text.js",
+        "cdnPath": "require/text"
+      },
+      "release": {
+        "src": "text.js",
+        "path": "libs/require/text.js",
+        "cdnPath": "require/text"
+      }
+    },
+    "signals": {
+      "cdn": "3rdparty",
+      "cwd": "node_modules/signals/dist",
+      "debug": {
+        "src": "signals.js",
+        "path": "libs/js-signals/signals.js",
+        "cdnPath": "js-signals/signals"
+      },
+      "release": {
+        "src": "signals.min.js",
+        "path": "libs/js-signals/signals.min.js",
+        "cdnPath": "js-signals/signals.min"
+      }
+    },
+    "touchr": {
+      "cdn": "3rdparty",
+      "cwd": "node_modules/@oracle/oraclejet/dist/js/libs/touchr",
+      "debug": {
+        "src": "touchr.js",
+        "path": "libs/touchr/touchr.js",
+        "cdnPath": "touchr/touchr"
+      },
+      "release": {
+        "src": "touchr.js",
+        "path": "libs/touchr/touchr.js",
+        "cdnPath": "touchr/touchr"
+      }
+    },
+    "regenerator-runtime": {
+      "cdn": "3rdparty",
+      "cwd": "node_modules/@oracle/oraclejet/dist/js/libs/regenerator-runtime",
+      "debug": {
+        "src": "runtime.js",
+        "path": "libs/regenerator-runtime/runtime.js",
+        "cdnPath": "regenerator-runtime/runtime"
+      },
+      "release": {
+        "src": "runtime.js",
+        "path": "libs/regenerator-runtime/runtime.js",
+        "cdnPath": "regenerator-runtime/runtime"
+      }
+    },
+    "corejs": {
+      "cdn": "3rdparty",
+      "cwd": "node_modules/@oracle/oraclejet/dist/js/libs/corejs",
+      "debug": {
+        "src": "shim.js",
+        "path": "libs/corejs/shim.js",
+        "cdnPath": "corejs/shim"
+      },
+      "release": {
+        "src": "shim.min.js",
+        "path": "libs/corejs/shim.min.js",
+        "cdnPath": "corejs/shim.min"
+      }
+    },
+    "customElements": {
+      "cdn": "3rdparty",
+      "cwd": "node_modules/@webcomponents/custom-elements",
+      "debug": {
+        "src": [
+          "custom-elements.min.js",
+          "custom-elements.min.js.map"
+        ],
+        "path": "libs/webcomponents/custom-elements.min.js",
+        "cdnPath": "webcomponents/custom-elements.min"
+      },
+      "release": {
+        "src": [
+          "custom-elements.min.js",
+          "custom-elements.min.js.map"
+        ],
+        "path": "libs/webcomponents/custom-elements.min.js",
+        "cdnPath": "webcomponents/custom-elements.min"
+      }
+    },
+    "proj4": {
+      "cdn": "3rdparty",
+      "cwd": "proj4/dist",
+      "debug": {
+        "src": "proj4-src.js",
+        "path": "libs/proj4js/dist/proj4-src.js",
+        "cdnPath": "proj4js/dist/proj4"
+      },
+      "release": {
+        "src": "proj4",
+        "path": "libs/proj4js/dist/proj4.js",
+        "cdnPath": "proj4js/dist/proj4"
+      }
+    },
+    "css": {
+      "cdn": "3rdparty",
+      "cwd": "node_modules/require-css",
+      "debug": {
+        "src": [
+          "css.js",
+          "css-builder.js",
+          "normalize.js"
+        ],
+        "path": "libs/require-css/css.js",
+        "cdnPath": "require-css/css"
+      },
+      "release": {
+        "src": [
+          "css.min.js",
+          "css-builder.js",
+          "normalize.js"
+        ],
+        "path": "libs/require-css/css.min.js",
+        "cdnPath": "require-css/css.min"
+      }
+    },
+    "tslib": {
+      "cwd": "node_modules/tslib",
+      "debug": {
+        "src": [
+          "tslib.js"
+        ],
+        "path": "libs/tslib/tslib.js"
+      },
+      "release": {
+        "src": [
+          "tslib.js"
+        ],
+        "path": "libs/tslib/tslib.js"
+      }
+    },
+    "apollo-client": {
+      "cwd": "node_modules/apollo-client",
+      "debug": {
+        "src": [
+          "bundle.umd.js"
+        ],
+        "path": "libs/apollo-client/bundle.umd.js"
+      },
+      "release": {
+        "src": [
+          "bundle.umd.js"
+        ],
+        "path": "libs/apollo-client/bundle.umd.js"
+      }
+    },
+    "apollo-cache-inmemory": {
+      "cwd": "node_modules/apollo-cache-inmemory/lib",
+      "debug": {
+        "src": [
+          "bundle.umd.js"
+        ],
+        "path": "libs/apollo-cache-inmemory/bundle.umd.js"
+      },
+      "release": {
+        "src": [
+          "bundle.umd.js"
+        ],
+        "path": "libs/apollo-cache-inmemory/bundle.umd.js"
+      }
+    },
+    "apollo-link-http": {
+      "cwd": "node_modules/apollo-link-http/lib",
+      "debug": {
+        "src": [
+          "bundle.umd.js"
+        ],
+        "path": "libs/apollo-link-http/bundle.umd.js"
+      },
+      "release": {
+        "src": [
+          "bundle.umd.js"
+        ],
+        "path": "libs/apollo-link-http/bundle.umd.js"
+      }
+    },
+    "apollo-link-ws": {
+      "cwd": "node_modules/apollo-link-ws/lib",
+      "debug": {
+        "src": [
+          "bundle.umd.js"
+        ],
+        "path": "libs/apollo-link-ws/bundle.umd.js"
+      },
+      "release": {
+        "src": [
+          "bundle.umd.js"
+        ],
+        "path": "libs/apollo-link-ws/bundle.umd.js"
+      }
+    },
+    "apollo-link": {
+      "cwd": "node_modules/apollo-link/lib",
+      "debug": {
+        "src": [
+          "bundle.umd.js"
+        ],
+        "path": "libs/apollo-link/bundle.umd.js"
+      },
+      "release": {
+        "src": [
+          "bundle.umd.js"
+        ],
+        "path": "libs/apollo-link/bundle.umd.js"
+      }
+    },
+    "apollo-link-http-common": {
+      "cwd": "node_modules/apollo-link-http-common/lib",
+      "debug": {
+        "src": [
+          "bundle.umd.js"
+        ],
+        "path": "libs/apollo-link-http-common/bundle.umd.js"
+      },
+      "release": {
+        "src": [
+          "bundle.umd.js"
+        ],
+        "path": "libs/apollo-link-http-common/bundle.umd.js"
+      }
+    },
+    "subscriptions-transport-ws": {
+      "cwd": "node_modules/subscriptions-transport-ws/dist",
+      "debug": {
+        "src": [
+          "**"
+        ],
+        "path": "libs/subscriptions-transport-ws"
+      },
+      "release": {
+        "src": [
+          "**"
+        ],
+        "path": "libs/subscriptions-transport-ws"
+      }
+    },
+    "apollo-cache": {
+      "cwd": "node_modules/apollo-cache/lib",
+      "debug": {
+        "src": [
+          "bundle.umd.js"
+        ],
+        "path": "libs/apollo-cache/bundle.umd.js"
+      },
+      "release": {
+        "src": [
+          "bundle.umd.js"
+        ],
+        "path": "libs/apollo-cache/bundle.umd.js"
+      }
+    },
+    "apollo-utilities": {
+      "cwd": "node_modules/apollo-utilities/lib",
+      "debug": {
+        "src": [
+          "bundle.umd.js"
+        ],
+        "path": "libs/apollo-utilities/bundle.umd.js"
+      },
+      "release": {
+        "src": [
+          "bundle.umd.js"
+        ],
+        "path": "libs/apollo-utilities/bundle.umd.js"
+      }
+    },
+    "ts-invariant": {
+      "cwd": "node_modules/ts-invariant/lib",
+      "debug": {
+        "src": [
+          "invariant.js"
+        ],
+        "path": "libs/ts-invariant/invariant.js"
+      },
+      "release": {
+        "src": [
+          "invariant.js"
+        ],
+        "path": "libs/ts-invariant/invariant.js"
+      }
+    },
+    "symbol-observable": {
+      "cwd": "node_modules/symbol-observable/lib",
+      "debug": {
+        "src": [
+          "ponyfill.js"
+        ],
+        "path": "libs/symbol-observable/ponyfill.js"
+      },
+      "release": {
+        "src": [
+          "ponyfill.js"
+        ],
+        "path": "libs/symbol-observable/ponyfill.js"
+      }
+    },
+    "graphql": {
+      "cwd": "node_modules/graphql",
+      "debug": {
+        "src": [
+          "**"
+        ],
+        "path": "libs/graphql"
+      },
+      "release": {
+        "src": [
+          "**"
+        ],
+        "path": "libs/graphql"
+      }
+    },
+    "graphql-tag": {
+      "cwd": "node_modules/graphql-tag/src",
+      "debug": {
+        "src": [
+          "index.js"
+        ],
+        "path": "libs/graphql-tag/index.js"
+      },
+      "release": {
+        "src": [
+          "index.js"
+        ],
+        "path": "libs/graphql-tag/index.js"
+      }
+    },
+    "optimism": {
+      "cwd": "node_modules/optimism/lib",
+      "debug": {
+        "src": [
+          "bundle.cjs.js"
+        ],
+        "path": "libs/optimism/bundle.cjs.js"
+      },
+      "release": {
+        "src": [
+          "bundle.cjs.js"
+        ],
+        "path": "libs/optimism/bundle.cjs.js"
+      }
+    },
+    "zen-observable-ts": {
+      "cwd": "node_modules/zen-observable-ts/lib",
+      "debug": {
+        "src": [
+          "bundle.umd.js"
+        ],
+        "path": "libs/zen-observable-ts/bundle.umd.js"
+      },
+      "release": {
+        "src": [
+          "bundle.umd.js"
+        ],
+        "path": "libs/zen-observable-ts/bundle.umd.js"
+      }
+    },
+    "zen-observable": {
+      "cwd": "node_modules/zen-observable",
+      "debug": {
+        "src": [
+          "index.js"
+        ],
+        "path": "libs/zen-observable/index.js"
+      },
+      "release": {
+        "src": [
+          "index.js"
+        ],
+        "path": "libs/zen-observable/index.js"
+      }
+    },
+    "lib/Observable.js": {
+      "cwd": "node_modules/zen-observable/lib",
+      "debug": {
+        "src": [
+          "Observable.js"
+        ],
+        "path": "libs/zen-observable/lib/Observable.js"
+      },
+      "release": {
+        "src": [
+          "Observable.js"
+        ],
+        "path": "libs/zen-observable/lib/Observable.js"
+      }
+    },
+    "fast-json-stable-stringify": {
+      "cwd": "node_modules/fast-json-stable-stringify/",
+      "debug": {
+        "src": [
+          "index.js"
+        ],
+        "path": "libs/fast-json-stable-stringify/index.js"
+      },
+      "release": {
+        "src": [
+          "index.js"
+        ],
+        "path": "libs/fast-json-stable-stringify/index.js"
+      }
+    },
+    "@wry/equality": {
+      "cwd": "node_modules/@wry/equality/lib",
+      "debug": {
+        "src": [
+          "equality.js"
+        ],
+        "path": "libs/@wry/equality/equality.js"
+      },
+      "release": {
+        "src": [
+          "equality.js"
+        ],
+        "path": "libs/@wry/equality/equality.js"
+      }
+    },
+    "@wry/context": {
+      "cwd": "node_modules/@wry/context/lib",
+      "debug": {
+        "src": [
+          "context.js"
+        ],
+        "path": "libs/@wry/context/context.js"
+      },
+      "release": {
+        "src": [
+          "context.js"
+        ],
+        "path": "libs/@wry/context/context.js"
+      }
+    },
+    "backo2": {
+      "cwd": "node_modules/backo2",
+      "debug": {
+        "src": [
+          "index.js"
+        ],
+        "path": "libs/backo2/index.js"
+      },
+      "release": {
+        "src": [
+          "index.js"
+        ],
+        "path": "libs/backo2/index.js"
+      }
+    },
+    "eventemitter3": {
+      "cwd": "node_modules/eventemitter3/umd",
+      "debug": {
+        "src": [
+          "eventemitter3.js"
+        ],
+        "path": "libs/eventemitter3/eventemitter3.js"
+      },
+      "release": {
+        "src": [
+          "eventemitter3.min.js"
+        ],
+        "path": "libs/eventemitter3/eventemitter3.min.js"
+      }
+    }
+  }
+}

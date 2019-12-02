@@ -1,4 +1,4 @@
-import { ApolloServer, PubSub } from 'apollo-server'
+import { ApolloServer, PubSub, ServerInfo } from 'apollo-server'
 import typeDefs from './schema'
 import connect from './database/connect'
 import resolvers from './resolvers'
@@ -13,8 +13,9 @@ const server = new ApolloServer({ typeDefs, resolvers })
 const DATABASE_NAME = 'post-db'
 
 // The `listen` method launches a web server.
-server.listen().then(async ({ url }: { url: string }) => {
+server.listen().then(async ({ url, subscriptionsUrl }: ServerInfo) => {
     console.log(`🚀  Server ready at ${url}`)
+    console.log(`🚀 Subscriptions ready at ${subscriptionsUrl}`)
     // Connect to your database
     await connect({ db: `mongodb://localhost:27017/${DATABASE_NAME}` })
 })

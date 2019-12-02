@@ -1,0 +1,24 @@
+<div class="oj-panel oj-sm-margin-2x oj-panel-shadow-sm">
+  <h3>Posts</h3>
+  <oj-list-view id="postsList" aria-label="posts list" data="[[dataProvider]]">
+    <template slot="itemTemplate" data-oj-as="item">
+      <div class="oj-flex oj-flex-items-pad  oj-sm-flex-direction-column">
+        <div class="oj-flex-item">
+          <h4 class="oj-text-primary-color">
+            <oj-bind-text value="[[item.data.title]]"></oj-bind-text>
+          </h4>
+        </div>
+        <div class="oj-flex-item oj-sm-margin-2x-bottom">
+          <span class="oj-text-xs oj-text-secondary-color">
+            <oj-bind-text value="[[item.data.author]]"></oj-bind-text>
+          </span>
+        </div>
+        <div class="oj-flex-item">
+          <span class="name">
+            <oj-bind-text value="[[item.data.body]]"></oj-bind-text>
+          </span>
+        </div>
+      </div>
+    </template>
+  </oj-list-view>
+</div>
