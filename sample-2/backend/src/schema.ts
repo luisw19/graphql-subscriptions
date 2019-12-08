@@ -1,5 +1,5 @@
 // src/schema.ts
-import { gql } from "apollo-server";
+import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
     # New subscriptions type

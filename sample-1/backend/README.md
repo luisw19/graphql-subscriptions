@@ -1,6 +1,11 @@
 # Graphql Backend Microservice
 
-This project contains a sample Graphql microservice based on [this article](https://medium.com/swlh/create-a-graphql-server-with-queries-mutations-subscriptions-b53df26df985) by Tom Nagle.
+This project contains a sample Graphql microservice based on [this article](https://medium.com/swlh/create-a-graphql-server-with-queries-mutations-subscriptions-b53df26df985) by Tom Nagle, however modified extensively to:
+
+- Use [TSLint](https://palantir.github.io/tslint/) instead of ESLint
+- Use [apollo-server-express](https://github.com/apollographql/apollo-server/tree/master/packages/apollo-server-express) with custom options (e.g. port, path)instead of the basic apollo server with default options
+- Use npm instead of yarn
+- Use *Posts* as opposed to *Cards*.
 
 ## Pre-requisites
 
