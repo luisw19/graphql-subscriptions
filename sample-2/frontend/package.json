@@ -1,0 +1,21 @@
+{
+  "name": "ojet-basic",
+  "version": "1.0.0",
+  "description": "An Oracle JavaScript Extension Toolkit(JET) web app",
+  "dependencies": {
+    "@oracle/oraclejet": "~8.0.0",
+    "apollo-boost": "^0.4.4",
+    "apollo-link-ws": "^1.0.19",
+    "graphql": "^14.5.8",
+    "graphql-tag": "^2.10.1",
+    "subscriptions-transport-ws": "^0.9.16",
+    "tslib": "^1.10.0"
+  },
+  "devDependencies": {
+    "@oracle/oraclejet-tooling": "~8.0.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "private": true
+}

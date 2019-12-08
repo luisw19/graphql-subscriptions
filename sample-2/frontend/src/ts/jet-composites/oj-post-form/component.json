@@ -1,0 +1,33 @@
+{
+  "name": "oj-post-form",
+  "version": "1.0.0",
+  "jetVersion": "^8.0.0",
+  "displayName": "A user friendly, translatable name of the component.",
+  "description": "A translatable high-level description for the component.",
+  "properties": {
+
+  },
+  "methods": {
+
+  }, 
+  "events": {
+    "submit": {
+      "description": "Triggered when stop tracing button clicked",
+      "bubbles": true,
+      "detail": {
+        "author": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        }
+      }
+    }
+  }, 
+  "slots": {
+
+  }
+}

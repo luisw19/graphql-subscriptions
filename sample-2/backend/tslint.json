@@ -1,0 +1,18 @@
+{
+  "extends": "tslint:recommended",
+  "rules": {
+    "max-line-length": {
+      "options": [200]
+    },
+    "no-console": false,
+    "no-var-requires": false,
+    "no-shadowed-variable": false,
+    "max-classes-per-file": false,
+    "member-ordering": false,
+    "no-consecutive-blank-lines": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "quotemark": [true, "double"],
+    "variable-name": [true, "allow-leading-underscore"]
+  }
+}
