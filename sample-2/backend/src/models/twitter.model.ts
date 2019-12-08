@@ -1,4 +1,3 @@
-
 export interface IUser {
     created_at: string;
     description: string;
@@ -38,7 +37,6 @@ export interface ITweetSearchParams {
     result_type?: string;
     lang?: string;
 }
-
 
 export interface ITweetQueryParams {
     filters: string;
