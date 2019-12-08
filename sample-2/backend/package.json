@@ -13,7 +13,6 @@
     "dev": "nodemon"
   },
   "devDependencies": {
-    "@types/mongoose": "^5.5.32",
     "@types/node": "^12.12.9",
     "prettier": "1.17.0",
     "pretty-quick": "^1.10.0",
@@ -23,11 +22,13 @@
   },
   "dependencies": {
     "@types/compression": "^1.0.1",
+    "@types/dotenv": "^8.2.0",
+    "@types/twitter": "^1.7.0",
     "apollo-server-express": "^2.9.13",
     "compression": "^1.7.4",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql": "^14.5.8",
-    "mongoose": "^5.7.11",
-    "ts-mongoose": "^0.0.21"
+    "twitter": "^1.7.1"
   }
 }

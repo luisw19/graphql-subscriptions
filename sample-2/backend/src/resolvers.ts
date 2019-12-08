@@ -1,26 +1,19 @@
-import {
-    getAllPosts,
-    IGetAllPostsInput,
-    createPost,
-    ICreatePostInput,
-} from "./controllers/post.controller";
-import { POST_CREATED } from "./constants";
+import { searchTweets } from "./controllers/twitter.controller";
 import { pubsub } from "./server";
+import { NEW_TWEET } from "./constants";
+import { ITweetQueryParams } from "./models/twitter.model";
 
 const resolvers = {
     Subscription: {
-        PostCreated: {
+        newTweets: {
             // Additional event labels can be passed to asyncIterator creation
-            subscribe: () => pubsub.asyncIterator([POST_CREATED]),
+            subscribe: () => pubsub.asyncIterator([NEW_TWEET]),
         },
     },
     Query: {
-        posts: (_: null, { input }: { input: IGetAllPostsInput }) =>
-            getAllPosts({ ...input }),
-    },
-    Mutation: {
-        CreatePost: (_: null, { input }: { input: ICreatePostInput }) =>
-            createPost({ ...input }),
+        searchTweets: async (_: any, queryParams: ITweetQueryParams) => {
+            return await searchTweets(queryParams.filters, queryParams.limit);
+        },
     },
 };
 

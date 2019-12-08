@@ -4,24 +4,40 @@ import { gql } from "apollo-server-express";
 const typeDefs = gql`
     # New subscriptions type
     type Subscription {
-        PostCreated: Post
+        newTweets: Tweet
     }
-    type Post {
-        _id: ID!
-        title: String
-        author: String
-        body: String
+    type User {
+        created_at: String
+        description: String
+        id: ID
+        screen_name: String
+        name: String
+        profile_image_url: String
+        url: String
+        tweets_count: Int
+        followers_count: Int
+        tweets: Tweet
+    }
+    type Tweet {
+        id: ID!
+        created_at: String
+        text: String
+        retweet_count: Int
+        user: User
+        retweets: Retweet
+    }
+    type Retweet {
+        id: ID
+        created_at: String
+        in_reply_to_tweet_id: String
+        retweet_count: Int
+        in_reply_to_user_id: String
+        in_reply_to_screen_name: String
+        retweeted_status: Tweet
+        user: User
     }
     type Query {
-        posts: [Post]
-    }
-    input CreatePostInput {
-        title: String
-        author: String
-        body: String
-    }
-    type Mutation {
-        CreatePost(input: CreatePostInput): Post
+        searchTweets(filters: String, limit: Int): [Tweet]
     }
 `;
 

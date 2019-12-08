@@ -1,5 +1,4 @@
-import { PORT, PATH, DATABASE_NAME } from "./constants";
-import connect from "./database/connect";
+import { PORT, PATH } from "./constants";
 import http from "http";
 import express from "express";
 import compression from "compression";
@@ -40,5 +39,4 @@ httpServer.listen({ port: PORT }, async () => {
     console.log(`🚀  GraphQL playground ready at http://localhost:${PORT}${PATH}`);
     console.log(`🚀  Subscriptions ready at ws://localhost:${PORT}${gServer.subscriptionsPath}`);
     // Connect to your database
-    await connect({ db: `mongodb://localhost:27017/${DATABASE_NAME}` });
 });
