@@ -11,7 +11,7 @@ This project requires [npm](https://www.npmjs.com/get-npm) and [Oracle JET](http
 brew install node
 
 # to install Oracle JET
-npm install -g @oracle/ojet-cl
+npm install -g @oracle/ojet-cli
 ```
 
 ## Try it out
