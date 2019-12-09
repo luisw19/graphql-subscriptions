@@ -3,9 +3,6 @@ import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
     # New subscriptions type
-    type Subscription {
-        newTweets: Tweet
-    }
     type User {
         created_at: String
         description: String
@@ -22,8 +19,11 @@ const typeDefs = gql`
         id: ID!
         created_at: String
         text: String
-        retweet_count: Int
         user: User
+        quote_count: Int
+        reply_count: Int
+        retweet_count: Int
+        favorite_count: Int
         retweets: Retweet
     }
     type Retweet {
@@ -38,6 +38,9 @@ const typeDefs = gql`
     }
     type Query {
         searchTweets(filters: String, limit: Int): [Tweet]
+    }
+    type Subscription {
+        newTweet(filters: String): Tweet
     }
 `;
 

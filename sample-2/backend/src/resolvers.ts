@@ -1,13 +1,16 @@
-import { searchTweets } from "./controllers/twitter.controller";
+import { searchTweets, newTweet } from "./controllers/twitter.controller";
 import { pubsub } from "./server";
 import { NEW_TWEET } from "./constants";
-import { ITweetQueryParams } from "./models/twitter.model";
+import { ITweetQueryParams } from "./types/twitter.types";
 
 const resolvers = {
     Subscription: {
-        newTweets: {
+        newTweet: {
             // Additional event labels can be passed to asyncIterator creation
-            subscribe: () => pubsub.asyncIterator([NEW_TWEET]),
+            subscribe: (_: any, queryParams: ITweetQueryParams) => {
+                newTweet(queryParams.filters);
+                return pubsub.asyncIterator([NEW_TWEET]);
+            },
         },
     },
     Query: {

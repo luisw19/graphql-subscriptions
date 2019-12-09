@@ -2,7 +2,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import Twitter from "twitter";
-import { ITweetSearchParams } from "../models/twitter.model";
+import { ITweetSearchParams } from "../types/twitter.types";
+import { EventEmitter } from "stream";
 
 const config = {
     consumer_key: process.env.TWITTER_CONSUMER_KEY || "",
@@ -41,4 +42,6 @@ export const twitterSearch = (params: ITweetSearchParams): any => {
     });
 };
 
-
+export const twitterStream = (filter: string): EventEmitter => {
+    return client.stream("statuses/filter", {track: filter} );
+};

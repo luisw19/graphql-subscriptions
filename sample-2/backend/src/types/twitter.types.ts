@@ -15,8 +15,11 @@ export interface ITweet {
     id: string;
     created_at: string;
     text: string;
-    retweet_count: number;
     user: IUser;
+    quote_count: number;
+    reply_count: number;
+    retweet_count: number;
+    favorite_count: number;
     retweets: IRetweet;
 }
 

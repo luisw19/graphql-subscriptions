@@ -19,6 +19,16 @@ app.use(compression());
 const gServer = new ApolloServer({
     typeDefs,
     resolvers,
+    subscriptions: {
+        onConnect: (connectionParams, webSocket, context) => {
+            console.log(context);
+          // ...
+        },
+        onDisconnect: (webSocket, context) => {
+            console.log(context);
+          // ...
+        },
+    },
     playground: true,
 });
 
@@ -33,6 +43,7 @@ gServer.applyMiddleware({
 // More info here: https://www.apollographql.com/docs/apollo-server/data/subscriptions/
 const httpServer = http.createServer(app);
 gServer.installSubscriptionHandlers(httpServer);
+
 
 // The `listen` method launches a web server.
 httpServer.listen({ port: PORT }, async () => {
