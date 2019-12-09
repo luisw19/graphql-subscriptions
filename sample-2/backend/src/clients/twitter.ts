@@ -18,14 +18,6 @@ const config = {
 // create a twitter client
 const client: Twitter = new Twitter(config);
 
-// // Set up your search parameters. Ref doc: https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets
-// const params: RequestParams = {
-//     q: "@luisw19 #Sofia",
-//     count: 10,
-//     result_type: "recent",
-//     lang: "en",
-// };
-
 export const twitterSearch = (params: ITweetSearchParams): any => {
     return new Promise((resolve, reject) => {
         console.log("searching:");
@@ -42,6 +34,8 @@ export const twitterSearch = (params: ITweetSearchParams): any => {
     });
 };
 
-export const twitterStream = (filter: string): EventEmitter => {
-    return client.stream("statuses/filter", {track: filter} );
+export const twitterStream = {
+    create: (filter: string, ctx: string): EventEmitter => {
+        return new Twitter(config).stream("statuses/filter", {track: filter} );
+    },
 };

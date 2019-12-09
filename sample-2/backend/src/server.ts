@@ -6,6 +6,7 @@ import cors from "cors";
 import { ApolloServer, PubSub } from "apollo-server-express";
 import typeDefs from "./schema";
 import resolvers from "./resolvers";
+import { stopTweetStream } from "./controllers/twitter.controller";
 
 // Using Apollo PubSub implementation but it can be replaced
 // See more here: https://www.apollographql.com/docs/apollo-server/data/subscriptions/
@@ -19,14 +20,22 @@ app.use(compression());
 const gServer = new ApolloServer({
     typeDefs,
     resolvers,
+    context: async ({ req, connection }) => {
+        if (connection) {
+            // check connection for metadata
+            return connection.context;
+        }
+    },
     subscriptions: {
-        onConnect: (connectionParams, webSocket, context) => {
-            console.log(context);
-          // ...
+        onConnect: (connectionParams: any, webSocket: any, context: any) => {
+            const ctx: string = context.socket.upgradeReq.headers["sec-websocket-key"] || "";
+            console.log(`Created ws: ${ctx}`);
+            return { extended: { ctx } };
         },
-        onDisconnect: (webSocket, context) => {
-            console.log(context);
-          // ...
+        onDisconnect: (webSocket: any, context: any) => {
+            const ctx: string = context.socket.upgradeReq.headers["sec-websocket-key"] || "";
+            console.log(`Disconnected ws: ${ctx}`);
+            stopTweetStream(ctx);
         },
     },
     playground: true,

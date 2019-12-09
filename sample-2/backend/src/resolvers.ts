@@ -1,21 +1,31 @@
-import { searchTweets, newTweet } from "./controllers/twitter.controller";
+import { searchTweets, startTweetStream } from "./controllers/twitter.controller";
 import { pubsub } from "./server";
-import { NEW_TWEET } from "./constants";
 import { ITweetQueryParams } from "./types/twitter.types";
+import { UserInputError } from "apollo-server-errors";
 
 const resolvers = {
     Subscription: {
         newTweet: {
             // Additional event labels can be passed to asyncIterator creation
-            subscribe: (_: any, queryParams: ITweetQueryParams) => {
-                newTweet(queryParams.filters);
-                return pubsub.asyncIterator([NEW_TWEET]);
+            subscribe: (parent: any, queryParams: ITweetQueryParams, context: any) => {
+                if ( !queryParams.filters ) {
+                    throw new UserInputError("please set some filters");
+                } else {
+                    const ctx = context.extended.ctx;
+                    console.log(`Received context ${ctx}`);
+                    startTweetStream(queryParams.filters, ctx);
+                    return pubsub.asyncIterator([ctx]);
+                }
             },
         },
     },
     Query: {
-        searchTweets: async (_: any, queryParams: ITweetQueryParams) => {
-            return await searchTweets(queryParams.filters, queryParams.limit);
+        searchTweets: async (parent: any, queryParams: ITweetQueryParams) => {
+            if ( !queryParams.filters ) {
+                throw new UserInputError("please set some filters");
+            } else {
+                return await searchTweets(queryParams.filters, queryParams.limit);
+            }
         },
     },
 };
