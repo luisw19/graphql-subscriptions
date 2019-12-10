@@ -66,21 +66,22 @@ export default class ViewModel implements Composite.ViewModel<Composite.Properti
         if (
             inputFilters.valid === 'valid'
         ) {
-            this.composite.dispatchEvent(new CustomEvent('start', {
+            this.composite.dispatchEvent(new CustomEvent('submit', {
                 detail: {
+                    start: true,
                     filters: inputFilters.value,
                 },
             }));
-            inputFilters.value = '';
+            // inputFilters.value = '';
         } else {
             inputFilters.showMessages();
         }
     }
 
     stop = () => {
-        this.composite.dispatchEvent(new CustomEvent('stop', {
+        this.composite.dispatchEvent(new CustomEvent('submit', {
             detail: {
-                stop: true,
+                start: false,
             },
         }));
     }

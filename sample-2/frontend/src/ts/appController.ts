@@ -27,8 +27,8 @@ class RootViewModel {
   appName: ko.Observable<string>;
   userLogin: ko.Observable<string>;
   footerLinks: ko.ObservableArray<FooterLink>;
-
   tweets: ko.ObservableArray<ITweet>;
+  querySubscription: any;
 
   constructor() {
     // media queries for responsive layouts
@@ -55,19 +55,28 @@ class RootViewModel {
     ]);
 
     this.tweets = ko.observableArray([]);
-    graphQLClient.query().then(tweets => {
-      console.log(tweets);
-      this.tweets(tweets.reverse());
-    });
-    graphQLClient.subscribe().subscribe((response) => {
-      console.log(response.data.newTweet);
-      this.tweets.unshift(response.data.newTweet);
-    });
+    // graphQLClient.query().then(tweets => {
+    //   console.log(tweets);
+    //   this.tweets(tweets.reverse());
+    // });
+    // graphQLClient.subscribe().subscribe((response) => {
+    //   console.log(response.data.newTweet);
+    //   this.tweets.unshift(response.data.newTweet);
+    // });
   }
 
   tweet = (event: CustomEvent) => {
     console.log(event.detail);
-    graphQLClient.subscribe();
+    if(event.detail.start){
+      console.log("Starting stream with filters: " + event.detail.filters);
+      this.querySubscription = graphQLClient.subscribe(event.detail.filters).subscribe((response) => {
+        console.log(response.data.newTweet);
+        this.tweets.unshift(response.data.newTweet);
+      });
+    } else {
+      console.log("Stopping stream..");
+      this.querySubscription.unsubscribe();
+    }
   }
 }
 

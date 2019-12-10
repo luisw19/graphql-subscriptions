@@ -18,21 +18,21 @@ export interface ISubscription {
 export class GraphQLClient {
 
     public TWEETS_SUBSCRIPTION = gql`
-            subscription {
-                newTweet (filters: "Java"){
-                    id
-                    created_at
-                    text
-                    reply_count
-                    retweet_count
-                    user {
-                        name
-                        screen_name
-                        profile_image_url
-                    }
+        subscription ($InputFilters: String!) {
+            newTweet (filters: $InputFilters){
+                id
+                created_at
+                text
+                reply_count
+                retweet_count
+                user {
+                    name
+                    screen_name
+                    profile_image_url
                 }
             }
-        `;
+        }
+    `;
     public TWEETS_QUERY = gql`
             query {
                 searchTweets (filters: "Java", limit: 2) {
@@ -111,13 +111,10 @@ export class GraphQLClient {
         return this.client.query<Query>({ query: this.TWEETS_QUERY }).then(response => response.data.tweets);
     }
 
-    subscribe() {
-        return this.client.subscribe<ISubscription>({ query: this.TWEETS_SUBSCRIPTION });
+    subscribe(filters: string) {
+        return this.client.subscribe<ISubscription>({ query: this.TWEETS_SUBSCRIPTION, variables: { InputFilters: filters } });
     }
 
-    unsubscribe() {
-        return this.client.stop();
-    }
 }
 
 export const graphQLClient = new GraphQLClient();
