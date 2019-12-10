@@ -1,0 +1,7 @@
+oj-tweet-form:not(.oj-complete) {
+	visibility: hidden;
+}
+
+oj-tweet-form {
+	max-width: 390px;
+}

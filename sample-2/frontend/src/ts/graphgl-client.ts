@@ -5,47 +5,59 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
 import gql from 'graphql-tag';
-import { IPost } from './model/post';
+import { ITweet } from './model/tweet';
 
 interface Query {
-    posts: IPost[];
+    tweets: ITweet[];
 }
 
 export interface ISubscription {
-    PostCreated: IPost;
+    newTweet: ITweet;
 }
 
 export class GraphQLClient {
 
-    public POSTS_SUBSCRIPTION = gql`
+    public TWEETS_SUBSCRIPTION = gql`
             subscription {
-                PostCreated {
-                    _id
-                    title
-                    author
-                    body
+                newTweet (filters: "Java"){
+                    id
+                    created_at
+                    text
+                    reply_count
+                    retweet_count
+                    user {
+                        name
+                        screen_name
+                        profile_image_url
+                    }
                 }
             }
         `;
-    public POSTS_QUERY = gql`
+    public TWEETS_QUERY = gql`
             query {
-                posts {
-                    _id
-                    title
-                    author
-                    body
+                searchTweets (filters: "Java", limit: 2) {
+                    id
+                    created_at
+                    text
+                    reply_count
+                    retweet_count
+                    user {
+                        name
+                        screen_name
+                        profile_image_url
+                    }
                 }
             }
         `;
-    public CREATE_POST = gql`
-            mutation($CreatePostInput: CreatePostInput!) {
-                CreatePost(input: $CreatePostInput) {
-                    title
-                    author
-                    body
-                }
-            }
-        `;
+    // public CREATE_POST = gql`
+    //         mutation($CreatePostInput: CreatePostInput!) {
+    //             CreatePost(input: $CreatePostInput) {
+    //                 title
+    //                 author
+    //                 body
+    //             }
+    //         }
+    //     `;
     public client: ApolloClient<NormalizedCacheObject>;
 
     constructor() {
@@ -95,16 +107,16 @@ export class GraphQLClient {
         });
     }
 
-    mutation(post: IPost) {
-        return this.client.mutate<IPost>({ mutation: this.CREATE_POST, variables: { CreatePostInput: post } });
-    }
-
     query() {
-        return this.client.query<Query>({ query: this.POSTS_QUERY }).then(response => response.data.posts);
+        return this.client.query<Query>({ query: this.TWEETS_QUERY }).then(response => response.data.tweets);
     }
 
     subscribe() {
-        return this.client.subscribe<ISubscription>({ query: this.POSTS_SUBSCRIPTION });
+        return this.client.subscribe<ISubscription>({ query: this.TWEETS_SUBSCRIPTION });
+    }
+
+    unsubscribe() {
+        return this.client.stop();
     }
 }
 

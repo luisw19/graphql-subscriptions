@@ -1,21 +1,23 @@
 <div class="oj-panel oj-sm-margin-2x oj-panel-shadow-sm">
-  <h3>Posts</h3>
-  <oj-list-view id="postsList" aria-label="posts list" data="[[dataProvider]]">
+  <h3>Tweets</h3>
+  <oj-list-view id="tweetsList" aria-label="tweets list" data="[[dataProvider]]">
     <template slot="itemTemplate" data-oj-as="item">
       <div class="oj-flex oj-flex-items-pad  oj-sm-flex-direction-column">
         <div class="oj-flex-item">
           <h4 class="oj-text-primary-color">
-            <oj-bind-text value="[[item.data.title]]"></oj-bind-text>
+            @<oj-bind-text value="[[item.data.user.screen_name]]"></oj-bind-text>
           </h4>
         </div>
         <div class="oj-flex-item oj-sm-margin-2x-bottom">
           <span class="oj-text-xs oj-text-secondary-color">
-            <oj-bind-text value="[[item.data.author]]"></oj-bind-text>
+            <oj-bind-text value="[[item.data.created_at]]"></oj-bind-text>
+            , retweets: <oj-bind-text value="[[item.data.retweet_count]]"></oj-bind-text>
+            , replies: <oj-bind-text value="[[item.data.reply_count]]"></oj-bind-text>
           </span>
         </div>
         <div class="oj-flex-item">
           <span class="name">
-            <oj-bind-text value="[[item.data.body]]"></oj-bind-text>
+            <oj-bind-text value="[[item.data.text]]"></oj-bind-text>
           </span>
         </div>
       </div>

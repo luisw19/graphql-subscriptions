@@ -4,7 +4,7 @@ import "ojs/ojinputtext";
 import "ojs/ojlabel";
 
 import * as ko from "knockout";
-import * as componentStrings from "ojL10n!./resources/nls/oj-post-form-strings";
+import * as componentStrings from "ojL10n!./resources/nls/oj-tweet-form-strings";
 import Context = require("ojs/ojcontext");
 import Composite = require("ojs/ojcomposite");
 
@@ -27,7 +27,7 @@ export default class ViewModel implements Composite.ViewModel<Composite.Properti
         //Example observable
         this.messageText = ko.observable("Hello from Example Component");
         this.properties = context.properties;
-        this.res = componentStrings["oj-post-form"];
+        this.res = componentStrings["oj-tweet-form"];
 
         // Example for parsing context properties
         // if (context.properties.name) {
@@ -60,30 +60,28 @@ export default class ViewModel implements Composite.ViewModel<Composite.Properti
     
     };
 
-    submit = () => {
-        const inputAuthor = document.getElementById('inputAuthor') as any;
-        const inputTitle = document.getElementById('inputTitle') as any;
-        const inputBody = document.getElementById('inputBody') as any;
+    start = () => {
+        const inputFilters = document.getElementById('inputFilters') as any;
 
         if (
-            inputAuthor.valid === 'valid'
-            && inputTitle.valid === 'valid'
-            && inputBody.valid === 'valid'
+            inputFilters.valid === 'valid'
         ) {
-            this.composite.dispatchEvent(new CustomEvent('submit', {
+            this.composite.dispatchEvent(new CustomEvent('start', {
                 detail: {
-                    author: inputAuthor.value,
-                    title: inputTitle.value,
-                    body: inputBody.value,
+                    filters: inputFilters.value,
                 },
             }));
-            inputAuthor.value = '';
-            inputTitle.value = '';
-            inputBody.value = '';
+            inputFilters.value = '';
         } else {
-            inputAuthor.showMessages();
-            inputTitle.showMessages();
-            inputBody.showMessages();
+            inputFilters.showMessages();
         }
+    }
+
+    stop = () => {
+        this.composite.dispatchEvent(new CustomEvent('stop', {
+            detail: {
+                stop: true,
+            },
+        }));
     }
 };

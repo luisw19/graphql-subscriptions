@@ -1,0 +1,15 @@
+oj-tweets-list:not(.oj-complete) {
+	visibility: hidden;
+}
+
+oj-tweets-list {
+	max-width: 400px;
+}
+
+oj-tweets-list h4 {
+	margin-bottom: 0;
+}
+
+oj-tweets-list li {
+	padding: 0;
+}

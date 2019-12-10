@@ -1,7 +1,0 @@
-oj-post-form:not(.oj-complete) {
-	visibility: hidden;
-}
-
-oj-post-form {
-	max-width: 390px;
-}

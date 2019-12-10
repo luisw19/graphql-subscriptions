@@ -1,12 +1,12 @@
 {
-  "name": "oj-posts-list",
+  "name": "oj-tweets-list",
   "version": "1.0.0",
   "jetVersion": "^8.0.0",
-  "displayName": "Posts Lists.",
-  "description": "The posts list component.",
+  "displayName": "Tweets Lists.",
+  "description": "The tweets list component.",
   "properties": {
-    "posts": {
-      "description": "Posts",
+    "tweets": {
+      "description": "Tweets",
       "type": "array"
     }
   },

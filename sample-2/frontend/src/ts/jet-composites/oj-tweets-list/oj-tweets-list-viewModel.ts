@@ -2,7 +2,7 @@ import "ojs/ojknockout";
 import "ojs/ojlistview";
 
 import * as ko from "knockout";
-import * as componentStrings from "ojL10n!./resources/nls/oj-posts-list-strings";
+import * as componentStrings from "ojL10n!./resources/nls/oj-tweets-list-strings";
 import Context = require("ojs/ojcontext");
 import Composite = require("ojs/ojcomposite");
 import ArrayDataProvider = require('ojs/ojarraydataprovider');
@@ -16,7 +16,7 @@ export default class ViewModel implements Composite.ViewModel<Composite.Properti
     res: { [key: string]: string };
 
     public dataProvider: ArrayDataProvider<any, any>;
-    private posts = ko.observableArray([]);
+    private tweets = ko.observableArray([]);
 
     constructor(context: Composite.ViewModelContext<Composite.PropertiesType>) {
         //At the start of your viewModel constructor
@@ -30,14 +30,14 @@ export default class ViewModel implements Composite.ViewModel<Composite.Properti
         //Example observable
         this.messageText = ko.observable("Hello from Example Component");
         this.properties = context.properties;
-        this.res = componentStrings["oj-posts-list"];
+        this.res = componentStrings["oj-tweets-list"];
 
         // Example for parsing context properties
         // if (context.properties.name) {
         //     parse the context properties here
         // }
 
-        this.dataProvider = new ArrayDataProvider(this.posts, { keyAttributes: '_id' });
+        this.dataProvider = new ArrayDataProvider(this.tweets, { keyAttributes: '_id' });
 
         //Once all startup and async activities have finished, relocate if there are any async activities
         this.busyResolve();
@@ -58,8 +58,8 @@ export default class ViewModel implements Composite.ViewModel<Composite.Properti
     };
 
     propertyChanged(context: Composite.PropertyChangedContext<Composite.PropertiesType>): void {
-        if(context.property === 'posts'){
-            this.posts(context.value);
+        if(context.property === 'tweets'){
+            this.tweets(context.value);
         }
     };
 

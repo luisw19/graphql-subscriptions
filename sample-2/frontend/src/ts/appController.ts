@@ -1,10 +1,10 @@
-import 'oj-posts-list/loader';
-import "oj-post-form/loader";
+import 'oj-tweets-list/loader';
+import "oj-tweet-form/loader";
 
 import * as ko from "knockout";
 import * as ResponsiveUtils from "ojs/ojresponsiveutils";
 import * as ResponsiveKnockoutUtils from "ojs/ojresponsiveknockoututils";
-import { IPost } from './model/post';
+import { ITweet } from './model/tweet';
 import { graphQLClient } from './graphgl-client';
 
 class FooterLink {
@@ -28,10 +28,10 @@ class RootViewModel {
   userLogin: ko.Observable<string>;
   footerLinks: ko.ObservableArray<FooterLink>;
 
-  posts: ko.ObservableArray<IPost>;
+  tweets: ko.ObservableArray<ITweet>;
 
   constructor() {
-    // media queries for repsonsive layouts
+    // media queries for responsive layouts
     let smQuery: string | null = ResponsiveUtils.getFrameworkQuery("sm-only");
     if (smQuery) {
       this.smScreen = ResponsiveKnockoutUtils.createMediaQueryObservable(smQuery);
@@ -40,10 +40,10 @@ class RootViewModel {
     // header
 
     // application Name used in Branding Area
-    this.appName = ko.observable("App Name");
+    this.appName = ko.observable("Tweeter Streams App");
 
     // user Info used in Global Navigation area
-    this.userLogin = ko.observable("john.hancock@oracle.com");
+    this.userLogin = ko.observable("luis.weir@oracle.com");
 
     // footer
     this.footerLinks = ko.observableArray([
@@ -54,20 +54,20 @@ class RootViewModel {
       new FooterLink({ name: "Your Privacy Rights", id: "yourPrivacyRights", linkTarget: "http://www.oracle.com/us/legal/privacy/index.html" })
     ]);
 
-    this.posts = ko.observableArray([]);
-    graphQLClient.query().then(posts => {
-      console.log(posts);
-      this.posts(posts.reverse());
+    this.tweets = ko.observableArray([]);
+    graphQLClient.query().then(tweets => {
+      console.log(tweets);
+      this.tweets(tweets.reverse());
     });
     graphQLClient.subscribe().subscribe((response) => {
-      console.log(response.data.PostCreated);
-      this.posts.unshift(response.data.PostCreated);
+      console.log(response.data.newTweet);
+      this.tweets.unshift(response.data.newTweet);
     });
   }
 
-  post = (event: CustomEvent) => {
+  tweet = (event: CustomEvent) => {
     console.log(event.detail);
-    graphQLClient.mutation(event.detail);
+    graphQLClient.subscribe();
   }
 }
 

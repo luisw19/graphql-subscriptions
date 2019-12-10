@@ -1,5 +1,5 @@
 {
-  "name": "oj-post-form",
+  "name": "oj-tweet-form",
   "version": "1.0.0",
   "jetVersion": "^8.0.0",
   "displayName": "A user friendly, translatable name of the component.",
