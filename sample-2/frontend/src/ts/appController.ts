@@ -42,10 +42,10 @@ class RootViewModel {
     // header
 
     // application Name used in Branding Area
-    this.appName = ko.observable("Tweeter Streams App");
+    this.appName = ko.observable(" Tweeter Streams Demo");
 
     // user Info used in Global Navigation area
-    this.userLogin = ko.observable("luis.weir@oracle.com");
+    // this.userLogin = ko.observable("luis.weir@oracle.com");
 
     // footer
     this.footerLinks = ko.observableArray([
