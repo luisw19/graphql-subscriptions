@@ -10,7 +10,8 @@
     "tslint-fix": "tslint --project tsconfig.json --config tslint.json --fix",
     "postinstall": "npx tsc",
     "build": "tsc",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "start": "ts-node ./src/server.ts"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.149",

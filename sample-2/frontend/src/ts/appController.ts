@@ -22,13 +22,15 @@ class FooterLink {
   }
 }
 
+// required to unsubscribe graphql client. It doesn't work if place in RootViewModel
+let querySubscription: any;
+
 class RootViewModel {
   smScreen: ko.Observable<boolean>;
   appName: ko.Observable<string>;
   userLogin: ko.Observable<string>;
   footerLinks: ko.ObservableArray<FooterLink>;
   tweets: ko.ObservableArray<ITweet>;
-  querySubscription: any;
 
   constructor() {
     // media queries for responsive layouts
@@ -69,13 +71,14 @@ class RootViewModel {
     console.log(event.detail);
     if(event.detail.start){
       console.log("Starting stream with filters: " + event.detail.filters);
-      this.querySubscription = graphQLClient.subscribe(event.detail.filters).subscribe((response) => {
+      querySubscription = graphQLClient.subscribe(event.detail.filters).subscribe((response) => {
         console.log(response.data.newTweet);
         this.tweets.unshift(response.data.newTweet);
       });
     } else {
-      console.log("Stopping stream..");
-      this.querySubscription.unsubscribe();
+      console.log("Stopping stream...");
+      querySubscription.unsubscribe();
+      graphQLClient.close()
     }
   }
 }

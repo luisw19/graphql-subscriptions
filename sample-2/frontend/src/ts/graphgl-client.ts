@@ -60,6 +60,8 @@ export class GraphQLClient {
     //     `;
     public client: ApolloClient<NormalizedCacheObject>;
 
+    public wsLink: any;
+
     constructor() {
         // Create an http link:
         const cache = new InMemoryCache();
@@ -68,7 +70,7 @@ export class GraphQLClient {
             uri: 'http://localhost:4000/graphql',
         });
         // Create a WebSocket link:
-        const wsLink = new WebSocketLink({
+        this.wsLink = new WebSocketLink({
             uri: `ws://localhost:4000/graphql`,
             options: {
                 reconnect: true
@@ -86,7 +88,7 @@ export class GraphQLClient {
                     definition.operation === 'subscription'
                 );
             },
-            wsLink,
+            this.wsLink,
             httpLink,
         );
 
@@ -113,6 +115,10 @@ export class GraphQLClient {
 
     subscribe(filters: string) {
         return this.client.subscribe<ISubscription>({ query: this.TWEETS_SUBSCRIPTION, variables: { InputFilters: filters } });
+    }
+
+    close(){
+        this.wsLink.subscriptionClient.close(false, false);
     }
 
 }
