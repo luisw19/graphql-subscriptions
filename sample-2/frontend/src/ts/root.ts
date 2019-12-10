@@ -4,6 +4,7 @@ import "ojs/ojknockout";
 import "ojs/ojbutton";
 import "ojs/ojtoolbar";
 import "ojs/ojmenu";
+import "ojs/ojprogress";
 
 export default class Root {
   constructor() {

@@ -24,21 +24,10 @@ export default class ViewModel implements Composite.ViewModel<Composite.Properti
         const busyContext: Context.BusyContext = elementContext.getBusyContext();
         const options = { "description": "Web Component Startup - Waiting for data" };
         this.busyResolve = busyContext.addBusyState(options);
-
         this.composite = context.element;
-
-        //Example observable
-        this.messageText = ko.observable("Hello from Example Component");
         this.properties = context.properties;
         this.res = componentStrings["oj-tweets-list"];
-
-        // Example for parsing context properties
-        // if (context.properties.name) {
-        //     parse the context properties here
-        // }
-
         this.dataProvider = new ArrayDataProvider(this.tweets, { keyAttributes: '_id' });
-
         //Once all startup and async activities have finished, relocate if there are any async activities
         this.busyResolve();
     }
