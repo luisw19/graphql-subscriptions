@@ -1,7 +1,12 @@
 <oj-form-layout class="oj-panel oj-sm-margin-2x oj-panel-shadow-sm" label-edge="start">
-  <h3 class="oj-header-border">Twitter Streams</h3>
-  <oj-input-text id="inputFilters" required label-hint="Tweet Filters"></oj-input-text>
-  <p class="oj-sm-text-align-end">
+  <h3 class="oj-header-border">Create Twitter Stream</h3>
+  <!-- <oj-input-text id="inputFilters" required label-hint="Tweet Filters"></oj-input-text> -->
+  <oj-combobox-many id="inputFilters" value="{{inputFilters}}" required="true">
+    <oj-option value="#APIs">#APIs</oj-option>
+    <oj-option value="@luisw19">@luisw19</oj-option>
+    <oj-option value="#CodeMonsters">#CodeMonsters</oj-option>
+  </oj-combobox-many>
+  <p class="oj-sm-text-align-start">
     <oj-button on-oj-action="[[start]]">Start Stream</oj-button>
     <oj-button on-oj-action="[[stop]]">Stop Stream</oj-button>
   </p>

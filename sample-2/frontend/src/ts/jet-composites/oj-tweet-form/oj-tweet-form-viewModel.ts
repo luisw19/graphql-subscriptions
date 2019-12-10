@@ -2,6 +2,7 @@ import "ojs/ojknockout";
 import "ojs/ojformlayout";
 import "ojs/ojinputtext";
 import "ojs/ojlabel";
+import "ojs/ojselectcombobox";
 
 import * as ko from "knockout";
 import * as componentStrings from "ojL10n!./resources/nls/oj-tweet-form-strings";
@@ -14,6 +15,7 @@ export default class ViewModel implements Composite.ViewModel<Composite.Properti
     messageText: ko.Observable<string>;
     properties: Composite.PropertiesType;
     res: { [key: string]: string };
+    inputFilters: ko.Observable<string>;
 
     constructor(context: Composite.ViewModelContext<Composite.PropertiesType>) {        
         //At the start of your viewModel constructor
@@ -25,7 +27,7 @@ export default class ViewModel implements Composite.ViewModel<Composite.Properti
         this.composite = context.element;
 
         //Example observable
-        this.messageText = ko.observable("Hello from Example Component");
+        this.inputFilters = ko.observable();
         this.properties = context.properties;
         this.res = componentStrings["oj-tweet-form"];
 
@@ -62,14 +64,13 @@ export default class ViewModel implements Composite.ViewModel<Composite.Properti
 
     start = () => {
         const inputFilters = document.getElementById('inputFilters') as any;
-
-        if (
-            inputFilters.valid === 'valid'
-        ) {
+        let inputString: string = inputFilters.value;
+        if ( inputString !== null) {
+            inputString = inputString.toString().replace(","," ");
             this.composite.dispatchEvent(new CustomEvent('submit', {
                 detail: {
                     start: true,
-                    filters: inputFilters.value,
+                    filters: inputString
                 },
             }));
             // inputFilters.value = '';
