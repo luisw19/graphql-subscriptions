@@ -11,7 +11,7 @@ const config = {
     access_token_key: process.env.TWITTER_ACCESS_TOKEN || "",
     access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET || "",
     // request_options: {
-    //     proxy: "http://www-proxy-lon.uk.oracle.com:80",
+    //     proxy: "",
     // },
 };
 
