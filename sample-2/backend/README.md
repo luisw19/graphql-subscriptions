@@ -9,6 +9,18 @@ This project requires [npm](https://www.npmjs.com/get-npm). In Mac it can be ins
 brew install node
 ```
 
+The project also requires valid twitter consumer and access tokens/keys which can be obtained by first registering on the [Twitter Developer Portal](https://developer.twitter.com/) (if not already )and then creating a new application. Once this is done, create a `.env` file in the root folder and define the tokens/keys as following:
+
+```bash
+# Consumer API keys
+TWITTER_CONSUMER_KEY=<value here>
+TWITTER_CONSUMER_SECRET=<value here>
+
+# Access Tokens
+TWITTER_ACCESS_TOKEN=<value here>
+TWITTER_ACCESS_TOKEN_SECRET=<value here>
+```
+
 ## Try it out
 
 - run:
