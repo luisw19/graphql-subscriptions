@@ -67,12 +67,15 @@ export default class ViewModel implements Composite.ViewModel<Composite.Properti
         let inputString: string = inputFilters.value;
         if ( inputString !== null) {
             inputString = inputString.toString().replace(","," ");
-            this.composite.dispatchEvent(new CustomEvent('submit', {
-                detail: {
-                    start: true,
-                    filters: inputString
-                },
-            }));
+            console.log("filters: " + inputString);
+            let event =
+                {
+                    detail: {
+                        create: true,
+                        filters: inputString
+                    },
+                };
+            this.composite.dispatchEvent(new CustomEvent('stream', event));
             // inputFilters.value = '';
         } else {
             inputFilters.showMessages();
@@ -80,10 +83,13 @@ export default class ViewModel implements Composite.ViewModel<Composite.Properti
     }
 
     stop = () => {
-        this.composite.dispatchEvent(new CustomEvent('submit', {
-            detail: {
-                start: false,
-            },
-        }));
+        let event =
+            {
+                detail: {
+                    create: false,
+                    filters: ""
+                },
+            };
+        this.composite.dispatchEvent(new CustomEvent('stream', event));
     }
 };

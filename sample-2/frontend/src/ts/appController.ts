@@ -63,7 +63,7 @@ class RootViewModel {
 
   tweet = (event: CustomEvent) => {
     console.log(event.detail);
-    if(event.detail.start){
+    if(event.detail.create){
       document.getElementById("loadingIcon").style.visibility = "visible";
       console.log("Starting stream with filters: " + event.detail.filters);
       querySubscription = graphQLClient.subscribe(event.detail.filters).subscribe((response) => {

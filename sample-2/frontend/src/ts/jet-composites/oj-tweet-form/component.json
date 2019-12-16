@@ -11,23 +11,16 @@
 
   }, 
   "events": {
-    "submit": {
-      "description": "Triggered when stop tracing button clicked",
-      "bubbles": true,
+    "stream": {
+      "description": "Triggered to start a stream",
       "detail": {
-        "author": {
-          "type": "string"
+        "create": {
+          "type": "boolean"
         },
-        "title": {
-          "type": "string"
-        },
-        "body": {
+        "filters": {
           "type": "string"
         }
       }
     }
-  }, 
-  "slots": {
-
   }
 }
