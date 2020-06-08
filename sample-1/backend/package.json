@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@types/compression": "^1.0.1",
-    "apollo-server-express": "^2.9.13",
+    "apollo-server-express": "^2.14.2",
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "graphql": "^14.5.8",
